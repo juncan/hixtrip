@@ -1,13 +1,10 @@
 package com.hixtrip.sample.domain.goods.model;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hixtrip.sample.domain.order.model.BaseAuditingEntity;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -188,14 +185,12 @@ public class goodsSpu extends BaseAuditingEntity {
      *
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private LocalDateTime upTime;
 
     /**
      * 下架时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private LocalDateTime downTime;
 
     /**
@@ -212,7 +207,6 @@ public class goodsSpu extends BaseAuditingEntity {
      * 开售时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private LocalDateTime saleTime;
 
     /**

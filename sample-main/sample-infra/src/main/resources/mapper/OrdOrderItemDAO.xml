@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hixtrip.sample.infra.db.mapper.OrdOrderItemDAO">
+  <resultMap id="BaseResultMap" type="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="trade_id" jdbcType="VARCHAR" property="tradeId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_image" jdbcType="VARCHAR" property="goodsImage" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_type" jdbcType="CHAR" property="goodsType" />
+    <result column="goods_source_type" jdbcType="CHAR" property="goodsSourceType" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="flow_price" jdbcType="DECIMAL" property="flowPrice" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="sub_total" jdbcType="DECIMAL" property="subTotal" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="freight_price" jdbcType="DECIMAL" property="freightPrice" />
+    <result column="settle_price" jdbcType="DECIMAL" property="settlePrice" />
+    <result column="after_sale_id" jdbcType="BIGINT" property="afterSaleId" />
+    <result column="after_sale_status" jdbcType="CHAR" property="afterSaleStatus" />
+    <result column="after_sale_num" jdbcType="INTEGER" property="afterSaleNum" />
+    <result column="service_status" jdbcType="CHAR" property="serviceStatus" />
+    <result column="comment_status" jdbcType="VARCHAR" property="commentStatus" />
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    <result column="specs" jdbcType="LONGVARCHAR" property="specs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trade_id, order_id, goods_id, goods_code, goods_image, goods_name, goods_type, 
+    goods_source_type, sku_id, num, unit_price, flow_price, goods_price, sub_total, coupon_price, 
+    freight_price, settle_price, after_sale_id, after_sale_status, after_sale_num, service_status, 
+    comment_status, tenant_id, create_by, create_time, update_by, update_time, deleted, 
+    remark
+  </sql>
+  <sql id="Blob_Column_List">
+    specs
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ord_order_item
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ord_order_item
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    insert into ord_order_item (id, trade_id, order_id, 
+      goods_id, goods_code, goods_image, 
+      goods_name, goods_type, goods_source_type, 
+      sku_id, num, unit_price, 
+      flow_price, goods_price, sub_total, 
+      coupon_price, freight_price, settle_price, 
+      after_sale_id, after_sale_status, after_sale_num, 
+      service_status, comment_status, tenant_id, 
+      create_by, create_time, update_by, 
+      update_time, deleted, remark, 
+      specs)
+    values (#{id,jdbcType=VARCHAR}, #{tradeId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=BIGINT}, #{goodsCode,jdbcType=VARCHAR}, #{goodsImage,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsType,jdbcType=CHAR}, #{goodsSourceType,jdbcType=CHAR}, 
+      #{skuId,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}, 
+      #{flowPrice,jdbcType=DECIMAL}, #{goodsPrice,jdbcType=DECIMAL}, #{subTotal,jdbcType=DECIMAL}, 
+      #{couponPrice,jdbcType=DECIMAL}, #{freightPrice,jdbcType=DECIMAL}, #{settlePrice,jdbcType=DECIMAL}, 
+      #{afterSaleId,jdbcType=BIGINT}, #{afterSaleStatus,jdbcType=CHAR}, #{afterSaleNum,jdbcType=INTEGER}, 
+      #{serviceStatus,jdbcType=CHAR}, #{commentStatus,jdbcType=VARCHAR}, #{tenantId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{specs,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    insert into ord_order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsCode != null">
+        goods_code,
+      </if>
+      <if test="goodsImage != null">
+        goods_image,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="goodsSourceType != null">
+        goods_source_type,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="unitPrice != null">
+        unit_price,
+      </if>
+      <if test="flowPrice != null">
+        flow_price,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="subTotal != null">
+        sub_total,
+      </if>
+      <if test="couponPrice != null">
+        coupon_price,
+      </if>
+      <if test="freightPrice != null">
+        freight_price,
+      </if>
+      <if test="settlePrice != null">
+        settle_price,
+      </if>
+      <if test="afterSaleId != null">
+        after_sale_id,
+      </if>
+      <if test="afterSaleStatus != null">
+        after_sale_status,
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num,
+      </if>
+      <if test="serviceStatus != null">
+        service_status,
+      </if>
+      <if test="commentStatus != null">
+        comment_status,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="specs != null">
+        specs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null">
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=CHAR},
+      </if>
+      <if test="goodsSourceType != null">
+        #{goodsSourceType,jdbcType=CHAR},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="subTotal != null">
+        #{subTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="settlePrice != null">
+        #{settlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleId != null">
+        #{afterSaleId,jdbcType=BIGINT},
+      </if>
+      <if test="afterSaleStatus != null">
+        #{afterSaleStatus,jdbcType=CHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="serviceStatus != null">
+        #{serviceStatus,jdbcType=CHAR},
+      </if>
+      <if test="commentStatus != null">
+        #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="specs != null">
+        #{specs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    update ord_order_item
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCode != null">
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImage != null">
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=CHAR},
+      </if>
+      <if test="goodsSourceType != null">
+        goods_source_type = #{goodsSourceType,jdbcType=CHAR},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null">
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        flow_price = #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="subTotal != null">
+        sub_total = #{subTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        freight_price = #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="settlePrice != null">
+        settle_price = #{settlePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="afterSaleId != null">
+        after_sale_id = #{afterSaleId,jdbcType=BIGINT},
+      </if>
+      <if test="afterSaleStatus != null">
+        after_sale_status = #{afterSaleStatus,jdbcType=CHAR},
+      </if>
+      <if test="afterSaleNum != null">
+        after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      </if>
+      <if test="serviceStatus != null">
+        service_status = #{serviceStatus,jdbcType=CHAR},
+      </if>
+      <if test="commentStatus != null">
+        comment_status = #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="specs != null">
+        specs = #{specs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    update ord_order_item
+    set trade_id = #{tradeId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=CHAR},
+      goods_source_type = #{goodsSourceType,jdbcType=CHAR},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      num = #{num,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      flow_price = #{flowPrice,jdbcType=DECIMAL},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      sub_total = #{subTotal,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      freight_price = #{freightPrice,jdbcType=DECIMAL},
+      settle_price = #{settlePrice,jdbcType=DECIMAL},
+      after_sale_id = #{afterSaleId,jdbcType=BIGINT},
+      after_sale_status = #{afterSaleStatus,jdbcType=CHAR},
+      after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      service_status = #{serviceStatus,jdbcType=CHAR},
+      comment_status = #{commentStatus,jdbcType=VARCHAR},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      specs = #{specs,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hixtrip.sample.domain.order.model.OrdOrderItem">
+    update ord_order_item
+    set trade_id = #{tradeId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=CHAR},
+      goods_source_type = #{goodsSourceType,jdbcType=CHAR},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      num = #{num,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      flow_price = #{flowPrice,jdbcType=DECIMAL},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      sub_total = #{subTotal,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      freight_price = #{freightPrice,jdbcType=DECIMAL},
+      settle_price = #{settlePrice,jdbcType=DECIMAL},
+      after_sale_id = #{afterSaleId,jdbcType=BIGINT},
+      after_sale_status = #{afterSaleStatus,jdbcType=CHAR},
+      after_sale_num = #{afterSaleNum,jdbcType=INTEGER},
+      service_status = #{serviceStatus,jdbcType=CHAR},
+      comment_status = #{commentStatus,jdbcType=VARCHAR},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

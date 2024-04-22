@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hixtrip.sample.infra.db.mapper.OrdTradeDAO">
+  <resultMap id="BaseResultMap" type="com.hixtrip.sample.domain.order.model.OrdTrade">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="pay_status" jdbcType="VARCHAR" property="payStatus" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="delivery_method" jdbcType="VARCHAR" property="deliveryMethod" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="flow_price" jdbcType="DECIMAL" property="flowPrice" />
+    <result column="freight_price" jdbcType="DECIMAL" property="freightPrice" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="member_phone" jdbcType="VARCHAR" property="memberPhone" />
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_status, payment_method, delivery_method, goods_price, flow_price, freight_price, 
+    discount_price, member_id, member_name, member_phone, tenant_id, create_by, create_time, 
+    update_by, update_time, deleted, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ord_trade
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ord_trade
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hixtrip.sample.domain.order.model.OrdTrade">
+    insert into ord_trade (id, pay_status, payment_method, 
+      delivery_method, goods_price, flow_price, 
+      freight_price, discount_price, member_id, 
+      member_name, member_phone, tenant_id, 
+      create_by, create_time, update_by, 
+      update_time, deleted, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=VARCHAR}, 
+      #{deliveryMethod,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, #{flowPrice,jdbcType=DECIMAL}, 
+      #{freightPrice,jdbcType=DECIMAL}, #{discountPrice,jdbcType=DECIMAL}, #{memberId,jdbcType=BIGINT}, 
+      #{memberName,jdbcType=VARCHAR}, #{memberPhone,jdbcType=VARCHAR}, #{tenantId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hixtrip.sample.domain.order.model.OrdTrade">
+    insert into ord_trade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>
+      <if test="deliveryMethod != null">
+        delivery_method,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="flowPrice != null">
+        flow_price,
+      </if>
+      <if test="freightPrice != null">
+        freight_price,
+      </if>
+      <if test="discountPrice != null">
+        discount_price,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="memberPhone != null">
+        member_phone,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMethod != null">
+        #{deliveryMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null">
+        #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hixtrip.sample.domain.order.model.OrdTrade">
+    update ord_trade
+    <set>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMethod != null">
+        delivery_method = #{deliveryMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        flow_price = #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        freight_price = #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null">
+        member_phone = #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hixtrip.sample.domain.order.model.OrdTrade">
+    update ord_trade
+    set pay_status = #{payStatus,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      delivery_method = #{deliveryMethod,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      flow_price = #{flowPrice,jdbcType=DECIMAL},
+      freight_price = #{freightPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      member_id = #{memberId,jdbcType=BIGINT},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_phone = #{memberPhone,jdbcType=VARCHAR},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

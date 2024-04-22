@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hixtrip.sample.infra.db.mapper.OrdOrderDAO">
+  <resultMap id="BaseResultMap" type="com.hixtrip.sample.domain.order.model.OrdOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="trade_id" jdbcType="VARCHAR" property="tradeId" />
+    <result column="order_type" jdbcType="CHAR" property="orderType" />
+    <result column="promotion_type" jdbcType="CHAR" property="promotionType" />
+    <result column="promotion_id" jdbcType="BIGINT" property="promotionId" />
+    <result column="distribution_id" jdbcType="BIGINT" property="distributionId" />
+    <result column="distribution_name" jdbcType="VARCHAR" property="distributionName" />
+    <result column="distribution_phone" jdbcType="VARCHAR" property="distributionPhone" />
+    <result column="pay_status" jdbcType="CHAR" property="payStatus" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="flow_price" jdbcType="DECIMAL" property="flowPrice" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
+    <result column="freight_price" jdbcType="DECIMAL" property="freightPrice" />
+    <result column="weight" jdbcType="DOUBLE" property="weight" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="member_phone" jdbcType="VARCHAR" property="memberPhone" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="logistics_code" jdbcType="VARCHAR" property="logisticsCode" />
+    <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName" />
+    <result column="logistics_no" jdbcType="VARCHAR" property="logisticsNo" />
+    <result column="logistics_time" jdbcType="TIMESTAMP" property="logisticsTime" />
+    <result column="complete_time" jdbcType="TIMESTAMP" property="completeTime" />
+    <result column="verification_code" jdbcType="VARCHAR" property="verificationCode" />
+    <result column="consignee_id" jdbcType="BIGINT" property="consigneeId" />
+    <result column="consignee_mobile" jdbcType="VARCHAR" property="consigneeMobile" />
+    <result column="consignee_name" jdbcType="VARCHAR" property="consigneeName" />
+    <result column="consignee_detail" jdbcType="VARCHAR" property="consigneeDetail" />
+    <result column="consignee_addr_code" jdbcType="VARCHAR" property="consigneeAddrCode" />
+    <result column="consignee_addr_path" jdbcType="VARCHAR" property="consigneeAddrPath" />
+    <result column="shipper_id" jdbcType="BIGINT" property="shipperId" />
+    <result column="shipper_mobile" jdbcType="VARCHAR" property="shipperMobile" />
+    <result column="shipper_center" jdbcType="VARCHAR" property="shipperCenter" />
+    <result column="shipper_contacts" jdbcType="VARCHAR" property="shipperContacts" />
+    <result column="shipper_addr" jdbcType="VARCHAR" property="shipperAddr" />
+    <result column="client_type" jdbcType="CHAR" property="clientType" />
+    <result column="use_coupon_id" jdbcType="VARCHAR" property="useCouponId" />
+    <result column="show_flag" jdbcType="CHAR" property="showFlag" />
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trade_id, order_type, promotion_type, promotion_id, distribution_id, distribution_name, 
+    distribution_phone, pay_status, payment_time, payment_method, order_status, goods_num, 
+    goods_price, flow_price, discount_price, coupon_price, freight_price, weight, member_id, 
+    member_name, member_phone, store_id, store_name, logistics_code, logistics_name, 
+    logistics_no, logistics_time, complete_time, verification_code, consignee_id, consignee_mobile, 
+    consignee_name, consignee_detail, consignee_addr_code, consignee_addr_path, shipper_id, 
+    shipper_mobile, shipper_center, shipper_contacts, shipper_addr, client_type, use_coupon_id, 
+    show_flag, tenant_id, create_by, create_time, update_by, update_time, deleted, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ord_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ord_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hixtrip.sample.domain.order.model.OrdOrder">
+    insert into ord_order (id, trade_id, order_type, 
+      promotion_type, promotion_id, distribution_id, 
+      distribution_name, distribution_phone, pay_status, 
+      payment_time, payment_method, order_status, 
+      goods_num, goods_price, flow_price, 
+      discount_price, coupon_price, freight_price, 
+      weight, member_id, member_name, 
+      member_phone, store_id, store_name, 
+      logistics_code, logistics_name, logistics_no, 
+      logistics_time, complete_time, verification_code, 
+      consignee_id, consignee_mobile, consignee_name, 
+      consignee_detail, consignee_addr_code, consignee_addr_path, 
+      shipper_id, shipper_mobile, shipper_center, 
+      shipper_contacts, shipper_addr, client_type, 
+      use_coupon_id, show_flag, tenant_id, 
+      create_by, create_time, update_by, 
+      update_time, deleted, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tradeId,jdbcType=VARCHAR}, #{orderType,jdbcType=CHAR}, 
+      #{promotionType,jdbcType=CHAR}, #{promotionId,jdbcType=BIGINT}, #{distributionId,jdbcType=BIGINT}, 
+      #{distributionName,jdbcType=VARCHAR}, #{distributionPhone,jdbcType=VARCHAR}, #{payStatus,jdbcType=CHAR}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{paymentMethod,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DECIMAL}, #{flowPrice,jdbcType=DECIMAL}, 
+      #{discountPrice,jdbcType=DECIMAL}, #{couponPrice,jdbcType=DECIMAL}, #{freightPrice,jdbcType=DECIMAL}, 
+      #{weight,jdbcType=DOUBLE}, #{memberId,jdbcType=BIGINT}, #{memberName,jdbcType=VARCHAR}, 
+      #{memberPhone,jdbcType=VARCHAR}, #{storeId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, 
+      #{logisticsCode,jdbcType=VARCHAR}, #{logisticsName,jdbcType=VARCHAR}, #{logisticsNo,jdbcType=VARCHAR}, 
+      #{logisticsTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP}, #{verificationCode,jdbcType=VARCHAR}, 
+      #{consigneeId,jdbcType=BIGINT}, #{consigneeMobile,jdbcType=VARCHAR}, #{consigneeName,jdbcType=VARCHAR}, 
+      #{consigneeDetail,jdbcType=VARCHAR}, #{consigneeAddrCode,jdbcType=VARCHAR}, #{consigneeAddrPath,jdbcType=VARCHAR}, 
+      #{shipperId,jdbcType=BIGINT}, #{shipperMobile,jdbcType=VARCHAR}, #{shipperCenter,jdbcType=VARCHAR}, 
+      #{shipperContacts,jdbcType=VARCHAR}, #{shipperAddr,jdbcType=VARCHAR}, #{clientType,jdbcType=CHAR}, 
+      #{useCouponId,jdbcType=VARCHAR}, #{showFlag,jdbcType=CHAR}, #{tenantId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hixtrip.sample.domain.order.model.OrdOrder">
+    insert into ord_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="promotionType != null">
+        promotion_type,
+      </if>
+      <if test="promotionId != null">
+        promotion_id,
+      </if>
+      <if test="distributionId != null">
+        distribution_id,
+      </if>
+      <if test="distributionName != null">
+        distribution_name,
+      </if>
+      <if test="distributionPhone != null">
+        distribution_phone,
+      </if>
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="paymentTime != null">
+        payment_time,
+      </if>
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="flowPrice != null">
+        flow_price,
+      </if>
+      <if test="discountPrice != null">
+        discount_price,
+      </if>
+      <if test="couponPrice != null">
+        coupon_price,
+      </if>
+      <if test="freightPrice != null">
+        freight_price,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="memberPhone != null">
+        member_phone,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="logisticsCode != null">
+        logistics_code,
+      </if>
+      <if test="logisticsName != null">
+        logistics_name,
+      </if>
+      <if test="logisticsNo != null">
+        logistics_no,
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time,
+      </if>
+      <if test="completeTime != null">
+        complete_time,
+      </if>
+      <if test="verificationCode != null">
+        verification_code,
+      </if>
+      <if test="consigneeId != null">
+        consignee_id,
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile,
+      </if>
+      <if test="consigneeName != null">
+        consignee_name,
+      </if>
+      <if test="consigneeDetail != null">
+        consignee_detail,
+      </if>
+      <if test="consigneeAddrCode != null">
+        consignee_addr_code,
+      </if>
+      <if test="consigneeAddrPath != null">
+        consignee_addr_path,
+      </if>
+      <if test="shipperId != null">
+        shipper_id,
+      </if>
+      <if test="shipperMobile != null">
+        shipper_mobile,
+      </if>
+      <if test="shipperCenter != null">
+        shipper_center,
+      </if>
+      <if test="shipperContacts != null">
+        shipper_contacts,
+      </if>
+      <if test="shipperAddr != null">
+        shipper_addr,
+      </if>
+      <if test="clientType != null">
+        client_type,
+      </if>
+      <if test="useCouponId != null">
+        use_coupon_id,
+      </if>
+      <if test="showFlag != null">
+        show_flag,
+      </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=CHAR},
+      </if>
+      <if test="promotionType != null">
+        #{promotionType,jdbcType=CHAR},
+      </if>
+      <if test="promotionId != null">
+        #{promotionId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionId != null">
+        #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionName != null">
+        #{distributionName,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionPhone != null">
+        #{distributionPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=CHAR},
+      </if>
+      <if test="paymentTime != null">
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMethod != null">
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null">
+        #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCode != null">
+        #{logisticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsName != null">
+        #{logisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNo != null">
+        #{logisticsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsTime != null">
+        #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeTime != null">
+        #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verificationCode != null">
+        #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeId != null">
+        #{consigneeId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeMobile != null">
+        #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null">
+        #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeDetail != null">
+        #{consigneeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddrCode != null">
+        #{consigneeAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddrPath != null">
+        #{consigneeAddrPath,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperId != null">
+        #{shipperId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperMobile != null">
+        #{shipperMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCenter != null">
+        #{shipperCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperContacts != null">
+        #{shipperContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddr != null">
+        #{shipperAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null">
+        #{clientType,jdbcType=CHAR},
+      </if>
+      <if test="useCouponId != null">
+        #{useCouponId,jdbcType=VARCHAR},
+      </if>
+      <if test="showFlag != null">
+        #{showFlag,jdbcType=CHAR},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hixtrip.sample.domain.order.model.OrdOrder">
+    update ord_order
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=CHAR},
+      </if>
+      <if test="promotionType != null">
+        promotion_type = #{promotionType,jdbcType=CHAR},
+      </if>
+      <if test="promotionId != null">
+        promotion_id = #{promotionId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionId != null">
+        distribution_id = #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionName != null">
+        distribution_name = #{distributionName,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionPhone != null">
+        distribution_phone = #{distributionPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=CHAR},
+      </if>
+      <if test="paymentTime != null">
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="flowPrice != null">
+        flow_price = #{flowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountPrice != null">
+        discount_price = #{discountPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null">
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freightPrice != null">
+        freight_price = #{freightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberPhone != null">
+        member_phone = #{memberPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCode != null">
+        logistics_code = #{logisticsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsName != null">
+        logistics_name = #{logisticsName,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNo != null">
+        logistics_no = #{logisticsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsTime != null">
+        logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completeTime != null">
+        complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verificationCode != null">
+        verification_code = #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeId != null">
+        consignee_id = #{consigneeId,jdbcType=BIGINT},
+      </if>
+      <if test="consigneeMobile != null">
+        consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeName != null">
+        consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeDetail != null">
+        consignee_detail = #{consigneeDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddrCode != null">
+        consignee_addr_code = #{consigneeAddrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeAddrPath != null">
+        consignee_addr_path = #{consigneeAddrPath,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperId != null">
+        shipper_id = #{shipperId,jdbcType=BIGINT},
+      </if>
+      <if test="shipperMobile != null">
+        shipper_mobile = #{shipperMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCenter != null">
+        shipper_center = #{shipperCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperContacts != null">
+        shipper_contacts = #{shipperContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddr != null">
+        shipper_addr = #{shipperAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null">
+        client_type = #{clientType,jdbcType=CHAR},
+      </if>
+      <if test="useCouponId != null">
+        use_coupon_id = #{useCouponId,jdbcType=VARCHAR},
+      </if>
+      <if test="showFlag != null">
+        show_flag = #{showFlag,jdbcType=CHAR},
+      </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hixtrip.sample.domain.order.model.OrdOrder">
+    update ord_order
+    set trade_id = #{tradeId,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=CHAR},
+      promotion_type = #{promotionType,jdbcType=CHAR},
+      promotion_id = #{promotionId,jdbcType=BIGINT},
+      distribution_id = #{distributionId,jdbcType=BIGINT},
+      distribution_name = #{distributionName,jdbcType=VARCHAR},
+      distribution_phone = #{distributionPhone,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=CHAR},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      flow_price = #{flowPrice,jdbcType=DECIMAL},
+      discount_price = #{discountPrice,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      freight_price = #{freightPrice,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DOUBLE},
+      member_id = #{memberId,jdbcType=BIGINT},
+      member_name = #{memberName,jdbcType=VARCHAR},
+      member_phone = #{memberPhone,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      logistics_code = #{logisticsCode,jdbcType=VARCHAR},
+      logistics_name = #{logisticsName,jdbcType=VARCHAR},
+      logistics_no = #{logisticsNo,jdbcType=VARCHAR},
+      logistics_time = #{logisticsTime,jdbcType=TIMESTAMP},
+      complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      verification_code = #{verificationCode,jdbcType=VARCHAR},
+      consignee_id = #{consigneeId,jdbcType=BIGINT},
+      consignee_mobile = #{consigneeMobile,jdbcType=VARCHAR},
+      consignee_name = #{consigneeName,jdbcType=VARCHAR},
+      consignee_detail = #{consigneeDetail,jdbcType=VARCHAR},
+      consignee_addr_code = #{consigneeAddrCode,jdbcType=VARCHAR},
+      consignee_addr_path = #{consigneeAddrPath,jdbcType=VARCHAR},
+      shipper_id = #{shipperId,jdbcType=BIGINT},
+      shipper_mobile = #{shipperMobile,jdbcType=VARCHAR},
+      shipper_center = #{shipperCenter,jdbcType=VARCHAR},
+      shipper_contacts = #{shipperContacts,jdbcType=VARCHAR},
+      shipper_addr = #{shipperAddr,jdbcType=VARCHAR},
+      client_type = #{clientType,jdbcType=CHAR},
+      use_coupon_id = #{useCouponId,jdbcType=VARCHAR},
+      show_flag = #{showFlag,jdbcType=CHAR},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
